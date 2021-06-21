@@ -1,7 +1,6 @@
 import working from "../assets/working.svg"
 import {
   Box,
-  Text,
   Image,
   Heading,
   List,

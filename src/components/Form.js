@@ -1,6 +1,21 @@
 import { useState } from "react"
+import {
+  Modal,
+  ModalBody,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalFooter,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Alert,
+  AlertIcon,
+} from "@chakra-ui/react"
 
-const Form = () => {
+const Form = ({ isOpen, onClose }) => {
   const [sampleRequest, setSampleRequest] = useState(false)
   const handleFormSubmit = (e) => {
     e.preventDefault()
@@ -9,21 +24,38 @@ const Form = () => {
     setSampleRequest(true)
   }
   return (
-    <div>
-      {!sampleRequest ? (
-        <form onSubmit={handleFormSubmit}>
-          <label htmlFor="name">Your name</label>
-          <input id="name" placeholder="Joe Doe" required />
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Modal Title</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          {!sampleRequest ? (
+            <>
+              <FormControl onSubmit={handleFormSubmit} id="name">
+                <FormLabel>Your name</FormLabel>
+                <Input id="name" placeholder="Joe Doe" required />
+              </FormControl>
+              <FormControl id="e-mail">
+                <FormLabel>Your e-mail</FormLabel>
+                <Input id="e-mail" placeholder="Joe@Doe.com" required />
+              </FormControl>
+            </>
+          ) : (
+            <Alert>
+              <AlertIcon />
+              Thank you! You will receive your sample soon!
+            </Alert>
+          )}
+        </ModalBody>
 
-          <label htmlFor="email">Your email</label>
-          <input id="email" type="email" placeholder="joe@doe.com" required />
-
-          <button type="submit">Submit</button>
-        </form>
-      ) : (
-        <p>Thank you! You will receive your sample soon!</p>
-      )}
-    </div>
+        <ModalFooter>
+          <Button colorScheme="blue" type="submit">
+            Submit
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   )
 }
 

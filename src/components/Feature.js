@@ -1,10 +1,14 @@
+import { Image, Text, Heading, Box } from "@chakra-ui/react"
+
 const Feature = ({ icon, title, text }) => {
   return (
-    <div>
-      <img width="64px" src={icon} alt="" />
-      <h2 as="h2">{title}</h2>
-      <p>{text}</p>
-    </div>
+    <Box>
+      <Image boxSize="64px" src={icon} alt="" />
+      <Heading fontSize="xl" mb="4">
+        {title}
+      </Heading>
+      <Text color="gray.600">{text}</Text>
+    </Box>
   )
 }
 
